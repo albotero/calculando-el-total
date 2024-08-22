@@ -1,35 +1,18 @@
-// Constants declaration
-const precio = 400000
-const precioSpan = document.querySelector(".precio-inicial")
-const cantidadP = document.querySelector(".cantidad")
-const valorTotalSpan = document.querySelector(".valor-total")
-const plusButton = document.querySelector(".plus-button")
-const minusButton = document.querySelector(".minus-button")
+precio = 400000;
 
-// Variables declaration
-let selectedQty = 0
+precioSpan = document.querySelector(".precio-inicial");
+precioSpan.innerHTML = precio;
 
-// Functions
-const updateValues = () => {
-  precioSpan.innerHTML = precio.toLocaleString()
-  cantidadP.innerHTML = selectedQty
-  valorTotalSpan.innerHTML = (precio * selectedQty).toLocaleString()
-  // Disable minus button if no items are selected
-  minusButton.disabled = selectedQty === 0
-}
+document.getElementById("add").addEventListener("click", () => {
+  let addPrice = parseInt(document.querySelector(".cantidad").innerHTML);
+  addPrice++;
+  document.querySelector(".cantidad").innerHTML = addPrice;
+  document.querySelector(".valor-total").innerHTML = addPrice * precio;
+});
 
-// Event listeners
-plusButton.addEventListener("click", () => {
-  selectedQty++
-  updateValues()
-})
-
-minusButton.addEventListener("click", () => {
-  if (selectedQty > 0) {
-    selectedQty--
-    updateValues()
-  }
-})
-
-// Initialization
-updateValues()
+document.getElementById("subtract").addEventListener("click", () => {
+  let subtractPrice = parseInt(document.querySelector(".cantidad").innerHTML);
+  subtractPrice--;
+  document.querySelector(".cantidad").innerHTML = subtractPrice;
+  document.querySelector(".valor-total").innerHTML = subtractPrice * precio;
+});
